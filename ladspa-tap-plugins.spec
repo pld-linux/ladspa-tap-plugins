@@ -6,7 +6,8 @@ Version:	0.4.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Sound
-Source0:	http://dl.sourceforge.net/tap-plugins/%{_rnam}-%{version}.tar.gz
+#Source0:	http://dl.sourceforge.net/tap-plugins/%{_rnam}-%{version}.tar.gz
+Source0:	%{_rnam}-%{version}.tar.gz
 # Source0-md5:	c74f3373aad1b6bfac07e9318391b2bd
 Patch0:		%{name}-DESTDIR_OPTFLAGS.patch
 URL:		http://tap-plugins.sourceforge.net/
