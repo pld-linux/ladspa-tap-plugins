@@ -1,8 +1,8 @@
-diff -aurN tap-plugins-0.3.0.orig/Makefile tap-plugins-0.3.0/Makefile
---- tap-plugins-0.3.0.orig/Makefile	2004-02-04 15:58:30.000000000 +0100
-+++ tap-plugins-0.3.0/Makefile	2004-02-08 19:14:15.078346312 +0100
+diff -aurN tap-plugins-0.4.2.orig/Makefile tap-plugins-0.4.2/Makefile
+--- tap-plugins-0.4.2.orig/Makefile	2004-03-03 16:54:44.000000000 +0100
++++ tap-plugins-0.4.2/Makefile	2004-03-24 23:08:50.751517728 +0100
 @@ -23,8 +23,8 @@
- # Change this if you want to install somewhere else. In particularly
+ # Change this if you want to install somewhere else. In particular
  # you may wish to remove the middle "local/" part of the path.
  
 -INSTALL_PLUGINS_DIR	=	/usr/local/lib/ladspa/
@@ -12,7 +12,7 @@ diff -aurN tap-plugins-0.3.0.orig/Makefile tap-plugins-0.3.0/Makefile
  
  # NO EDITING below this line is required
  # if all you want to do is install and use the plugins.
-@@ -49,31 +49,31 @@
+@@ -53,47 +53,47 @@
  # RULES TO BUILD PLUGINS FROM C CODE
  
  tap_tremolo.so: tap_tremolo.c tap_utils.h ladspa.h
@@ -24,6 +24,11 @@ diff -aurN tap-plugins-0.3.0.orig/Makefile tap-plugins-0.3.0/Makefile
 -	$(CC) -I. -O3 -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_eq.c -o tap_eq.o
 +	$(CC) -I. $(OPTFLAGS) -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_eq.c -o tap_eq.o
  	$(CC) -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt -o tap_eq.so tap_eq.o
+ 
+ tap_eqbw.so: tap_eqbw.c tap_utils.h ladspa.h
+-	$(CC) -I. -O3 -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_eqbw.c -o tap_eqbw.o
++	$(CC) -I. $(OPTFLAGS) -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_eqbw.c -o tap_eqbw.o
+ 	$(CC) -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt -o tap_eqbw.so tap_eqbw.o
  
  tap_echo.so: tap_echo.c tap_utils.h ladspa.h
 -	$(CC) -I. -O3 -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_echo.c -o tap_echo.o
@@ -49,5 +54,20 @@ diff -aurN tap-plugins-0.3.0.orig/Makefile tap-plugins-0.3.0/Makefile
 -	$(CC) -I. -O3 -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_deesser.c -o tap_deesser.o
 +	$(CC) -I. $(OPTFLAGS) -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_deesser.c -o tap_deesser.o
  	$(CC) -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt -o tap_deesser.so tap_deesser.o
+ 
+ tap_vibrato.so: tap_vibrato.c tap_utils.h ladspa.h
+-	$(CC) -I. -O3 -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_vibrato.c -o tap_vibrato.o
++	$(CC) -I. $(OPTFLAGS) -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_vibrato.c -o tap_vibrato.o
+ 	$(CC) -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt -o tap_vibrato.so tap_vibrato.o
+ 
+ tap_rotspeak.so: tap_rotspeak.c tap_utils.h ladspa.h
+-	$(CC) -I. -O3 -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_rotspeak.c -o tap_rotspeak.o
++	$(CC) -I. $(OPTFLAGS) -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_rotspeak.c -o tap_rotspeak.o
+ 	$(CC) -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt -o tap_rotspeak.so tap_rotspeak.o
+ 
+ tap_pitch.so: tap_pitch.c tap_utils.h ladspa.h
+-	$(CC) -I. -O3 -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_pitch.c -o tap_pitch.o
++	$(CC) -I. $(OPTFLAGS) -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_pitch.c -o tap_pitch.o
+ 	$(CC) -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt -o tap_pitch.so tap_pitch.o
  
  
