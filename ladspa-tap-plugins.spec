@@ -1,13 +1,17 @@
-%define		_rnam tap-plugins
+%define		_rnam		tap-plugins
+%define		docs_snap	20040622
+#
 Summary:	Set of LADSPA plugins for digital audio processing
 Summary(pl):	Zestaw wtyczek LADSPA do cyfrowej obróbki d¼wiêku
 Name:		ladspa-tap-plugins
-Version:	0.5.0
+Version:	0.6.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	http://dl.sourceforge.net/tap-plugins/%{_rnam}-%{version}.tar.gz
-# Source0-md5:	0f65959b7e368dc80bd911d06feb42cf
+# Source0-md5:	beef153faffb1d31289a01bb0336980c
+Source1:	http://dl.sourceforge.net/tap-plugins/%{_rnam}-doc-%{docs_snap}.tar.gz
+# Source1-md5:	5ce263abd7758a9c817bbdeee9d1e9de
 Patch0:		%{name}-DESTDIR_OPTFLAGS.patch
 URL:		http://tap-plugins.sourceforge.net/
 BuildRequires:	ladspa-devel
@@ -22,8 +26,20 @@ in a professional DAW environment such as Ardour.
 Zestaw wtyczek LADSPA do cyfrowej obróbki d¼wiêku, których
 zamierzeniem jest u¿ycie w profesjonalnym ¶rodowisku jak np. Ardour.
 
+%package doc
+Summary:        TAP plugins documentation
+Summary(pl):    Dokumentacja wtyczek TAP 
+Group:          Development/Libraries
+Requires:       %{name} = %{version}
+
+%description doc
+TAP plugins documentation.
+
+%description doc -l pl
+Dokumentacja wtyczek TAP.
+
 %prep
-%setup -qn %{_rnam}-%{version}
+%setup -qn %{_rnam}-%{version} -a1
 %patch0 -p1
 
 %build
@@ -42,6 +58,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README doc/*
+%doc CREDITS README
 %attr(755,root,root) %{_libdir}/ladspa/*.so
 %{_datadir}/ladspa/rdf/*.rdf
+
+%files doc
+%defattr(644,root,root,755)
+%doc %{_rnam}-doc-%{docs_snap}/*
