@@ -1,18 +1,18 @@
-diff -aurN tap-plugins-0.2.0.orig/Makefile tap-plugins-0.2.0/Makefile
---- tap-plugins-0.2.0.orig/Makefile	2004-01-29 17:17:56.000000000 +0100
-+++ tap-plugins-0.2.0/Makefile	2004-02-06 23:25:43.165927008 +0100
+diff -aurN tap-plugins-0.3.0.orig/Makefile tap-plugins-0.3.0/Makefile
+--- tap-plugins-0.3.0.orig/Makefile	2004-02-04 15:58:30.000000000 +0100
++++ tap-plugins-0.3.0/Makefile	2004-02-08 19:14:15.078346312 +0100
 @@ -23,8 +23,8 @@
  # Change this if you want to install somewhere else. In particularly
  # you may wish to remove the middle "local/" part of the path.
  
 -INSTALL_PLUGINS_DIR	=	/usr/local/lib/ladspa/
 -INSTALL_LRDF_DIR	=	/usr/local/share/ladspa/rdf/
-+INSTALL_PLUGINS_DIR	=	$(DESTDIR)/usr/lib/ladspa
-+INSTALL_LRDF_DIR	=	$(DESTDIR)/usr/share/ladspa/rdf
++INSTALL_PLUGINS_DIR	=	$(DESTDIR)/usr/lib/ladspa/
++INSTALL_LRDF_DIR	=	$(DESTDIR)/usr/share/ladspa/rdf/
  
  # NO EDITING below this line is required
  # if all you want to do is install and use the plugins.
-@@ -47,33 +47,33 @@
+@@ -49,31 +49,31 @@
  # RULES TO BUILD PLUGINS FROM C CODE
  
  tap_tremolo.so: tap_tremolo.c tap_utils.h ladspa.h
@@ -40,18 +40,14 @@ diff -aurN tap-plugins-0.2.0.orig/Makefile tap-plugins-0.2.0/Makefile
 +	$(CC) -I. $(OPTFLAGS) -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_limiter.c -o tap_limiter.o
  	$(CC) -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt -o tap_limiter.so tap_limiter.o
  
+ tap_autopan.so: tap_autopan.c tap_utils.h ladspa.h
+-	$(CC) -I. -O3 -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_autopan.c -o tap_autopan.o
++	$(CC) -I. $(OPTFLAGS) -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_autopan.c -o tap_autopan.o
+ 	$(CC) -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt -o tap_autopan.so tap_autopan.o
  
- # OTHER TARGETS
+ tap_deesser.so: tap_deesser.c tap_utils.h ladspa.h
+-	$(CC) -I. -O3 -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_deesser.c -o tap_deesser.o
++	$(CC) -I. $(OPTFLAGS) -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC tap_deesser.c -o tap_deesser.o
+ 	$(CC) -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt -o tap_deesser.so tap_deesser.o
  
- install: targets
--	-mkdirhier	$(INSTALL_PLUGINS_DIR)
--	cp *.so 	$(INSTALL_PLUGINS_DIR)
--	-mkdirhier	$(INSTALL_LRDF_DIR)
--	cp tap-plugins.rdf $(INSTALL_LRDF_DIR)
-+	mkdir -p 		$(INSTALL_PLUGINS_DIR)
-+	cp *.so 		$(INSTALL_PLUGINS_DIR)
-+	mkdir -p 		$(INSTALL_LRDF_DIR)
-+	cp tap-plugins.rdf 	$(INSTALL_LRDF_DIR)
- 
- targets:	$(PLUGINS)
  
