@@ -5,7 +5,7 @@ Summary:	Set of LADSPA plugins for digital audio processing
 Summary(pl):	Zestaw wtyczek LADSPA do cyfrowej obróbki d¼wiêku
 Name:		ladspa-tap-plugins
 Version:	0.7.0
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	http://dl.sourceforge.net/tap-plugins/%{_rnam}-%{version}.tar.gz
@@ -51,7 +51,8 @@ Dokumentacja wtyczek TAP.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	INSTALL_PLUGINS_DIR=%{_libdir}/ladspa
 
 %clean
 rm -rf $RPM_BUILD_ROOT
