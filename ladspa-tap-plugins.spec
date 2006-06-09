@@ -27,10 +27,10 @@ Zestaw wtyczek LADSPA do cyfrowej obróbki d¼wiêku, których
 zamierzeniem jest u¿ycie w profesjonalnym ¶rodowisku jak np. Ardour.
 
 %package doc
-Summary:        TAP plugins documentation
-Summary(pl):    Dokumentacja wtyczek TAP 
-Group:          Development/Libraries
-Requires:       %{name} = %{version}
+Summary:	TAP plugins documentation
+Summary(pl):	Dokumentacja wtyczek TAP 
+Group:		Development/Libraries
+Requires:	%{name} = %{version}
 
 %description doc
 TAP plugins documentation.
