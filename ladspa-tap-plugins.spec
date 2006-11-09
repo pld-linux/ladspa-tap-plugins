@@ -30,7 +30,7 @@ zamierzeniem jest u¿ycie w profesjonalnym ¶rodowisku jak np. Ardour.
 Summary:	TAP plugins documentation
 Summary(pl):	Dokumentacja wtyczek TAP 
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description doc
 TAP plugins documentation.
