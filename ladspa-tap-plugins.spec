@@ -2,7 +2,7 @@
 %define		docs_snap	20040817
 #
 Summary:	Set of LADSPA plugins for digital audio processing
-Summary(pl.UTF-8):   Zestaw wtyczek LADSPA do cyfrowej obróbki dźwięku
+Summary(pl.UTF-8):	Zestaw wtyczek LADSPA do cyfrowej obróbki dźwięku
 Name:		ladspa-tap-plugins
 Version:	0.7.0
 Release:	2
@@ -28,7 +28,7 @@ zamierzeniem jest użycie w profesjonalnym środowisku jak np. Ardour.
 
 %package doc
 Summary:	TAP plugins documentation
-Summary(pl.UTF-8):   Dokumentacja wtyczek TAP 
+Summary(pl.UTF-8):	Dokumentacja wtyczek TAP 
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
