@@ -1,17 +1,16 @@
-%define		_rnam		tap-plugins
-%define		docs_snap	20040817
-#
+%define		pname		tap-plugins
+%define		docs_ver	20140526
 Summary:	Set of LADSPA plugins for digital audio processing
 Summary(pl.UTF-8):	Zestaw wtyczek LADSPA do cyfrowej obróbki dźwięku
 Name:		ladspa-tap-plugins
-Version:	0.7.0
-Release:	2
-License:	GPL v2
+Version:	0.7.3
+Release:	1
+License:	GPL v2+
 Group:		Applications/Sound
-Source0:	http://dl.sourceforge.net/tap-plugins/%{_rnam}-%{version}.tar.gz
-# Source0-md5:	e3e13df63627dcf54d0a96f8125df9ee
-Source1:	http://dl.sourceforge.net/tap-plugins/%{_rnam}-doc-%{docs_snap}.tar.gz
-# Source1-md5:	9a320210a7a9417487ceb31d6e5c21be
+Source0:	http://downloads.sourceforge.net/tap-plugins/%{pname}-%{version}.tar.gz
+# Source0-md5:	113fa021b2a05e2fd3cf35f65e6ca137
+Source1:	http://downloads.sourceforge.net/tap-plugins/%{pname}-doc-%{docs_ver}.tar.gz
+# Source1-md5:	8af9ad9be0aac9f577056311d7ebbd5e
 Patch0:		%{name}-DESTDIR_OPTFLAGS.patch
 URL:		http://tap-plugins.sourceforge.net/
 BuildRequires:	ladspa-devel
@@ -28,9 +27,9 @@ zamierzeniem jest użycie w profesjonalnym środowisku jak np. Ardour.
 
 %package doc
 Summary:	TAP plugins documentation
-Summary(pl.UTF-8):	Dokumentacja wtyczek TAP 
-Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Summary(pl.UTF-8):	Dokumentacja wtyczek TAP
+Group:		Documentation
+Suggests:	%{name} = %{version}-%{release}
 
 %description doc
 TAP plugins documentation.
@@ -39,12 +38,17 @@ TAP plugins documentation.
 Dokumentacja wtyczek TAP.
 
 %prep
-%setup -qn %{_rnam}-%{version} -a1
+%setup -qn %{pname}-%{version} -a1
 %patch0 -p1
 
+%{__mv} %{pname}-doc-%{docs_ver} docs
+
+# use system ladspa header
+%{__rm} ladspa.h
+
 %build
-%{__perl} -pi -e "s,\"ladspa.h\",<ladspa.h>,g" *.c
 %{__make} \
+	CC="%{__cc}" \
 	OPTFLAGS="%{rpmcflags}"
 
 %install
@@ -60,9 +64,28 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CREDITS README
-%attr(755,root,root) %{_libdir}/ladspa/*.so
-%{_datadir}/ladspa/rdf/*.rdf
+%attr(755,root,root) %{_libdir}/ladspa/tap_autopan.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_chorusflanger.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_deesser.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_doubler.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_dynamics_m.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_dynamics_st.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_echo.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_eq.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_eqbw.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_limiter.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_pinknoise.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_pitch.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_reflector.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_reverb.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_rotspeak.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_sigmoid.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_tremolo.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_tubewarmth.so
+%attr(755,root,root) %{_libdir}/ladspa/tap_vibrato.so
+%{_datadir}/ladspa/rdf/tap-plugins.rdf
+%{_datadir}/ladspa/rdf/tap_reverb.rdf
 
 %files doc
 %defattr(644,root,root,755)
-%doc %{_rnam}-doc-%{docs_snap}/*
+%doc docs/*
