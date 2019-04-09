@@ -3,12 +3,12 @@
 Summary:	Set of LADSPA plugins for digital audio processing
 Summary(pl.UTF-8):	Zestaw wtyczek LADSPA do cyfrowej obróbki dźwięku
 Name:		ladspa-tap-plugins
-Version:	0.7.3
+Version:	1.0.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/Sound
 Source0:	http://downloads.sourceforge.net/tap-plugins/%{pname}-%{version}.tar.gz
-# Source0-md5:	113fa021b2a05e2fd3cf35f65e6ca137
+# Source0-md5:	86c217d8774974fbbe87909304195e5a
 Source1:	http://downloads.sourceforge.net/tap-plugins/%{pname}-doc-%{docs_ver}.tar.gz
 # Source1-md5:	8af9ad9be0aac9f577056311d7ebbd5e
 Patch0:		%{name}-DESTDIR_OPTFLAGS.patch
