@@ -3,16 +3,17 @@
 Summary:	Set of LADSPA plugins for digital audio processing
 Summary(pl.UTF-8):	Zestaw wtyczek LADSPA do cyfrowej obróbki dźwięku
 Name:		ladspa-tap-plugins
-Version:	1.0.0
+Version:	1.0.1
 Release:	1
 License:	GPL v2+
 Group:		Applications/Sound
-Source0:	http://downloads.sourceforge.net/tap-plugins/%{pname}-%{version}.tar.gz
-# Source0-md5:	86c217d8774974fbbe87909304195e5a
+#Source0Download: https://github.com/tomszilagyi/tap-plugins/releases
+Source0:	https://github.com/tomszilagyi/tap-plugins/archive/v%{version}/%{pname}-%{version}.tar.gz
+# Source0-md5:	d36cf5f136c53f116a3f8496ad592355
 Source1:	http://downloads.sourceforge.net/tap-plugins/%{pname}-doc-%{docs_ver}.tar.gz
 # Source1-md5:	8af9ad9be0aac9f577056311d7ebbd5e
 Patch0:		%{name}-DESTDIR_OPTFLAGS.patch
-URL:		http://tap-plugins.sourceforge.net/
+URL:		https://tomscii.sig7.se/tap-plugins/
 BuildRequires:	ladspa-devel
 Requires:	ladspa-common
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -47,9 +48,10 @@ Dokumentacja wtyczek TAP.
 %{__rm} ladspa.h
 
 %build
+CFLAGS="%{rpmcflags} %{rpmcppflags}" \
+LDFLAGS="%{rpmldflags}" \
 %{__make} \
-	CC="%{__cc}" \
-	OPTFLAGS="%{rpmcflags}"
+	CC="%{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT

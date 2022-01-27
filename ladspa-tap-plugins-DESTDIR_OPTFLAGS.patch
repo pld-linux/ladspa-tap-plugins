@@ -1,5 +1,5 @@
---- tap-plugins-0.7.3/Makefile.orig	2014-05-26 16:51:56.000000000 +0200
-+++ tap-plugins-0.7.3/Makefile	2016-09-27 16:27:02.583722200 +0200
+--- tap-plugins-1.0.1/Makefile.orig	2019-01-20 13:10:05.000000000 +0100
++++ tap-plugins-1.0.1/Makefile	2022-01-27 20:04:57.153315247 +0100
 @@ -23,8 +23,8 @@
  # Change this if you want to install somewhere else. In particular
  # you may wish to remove the middle "local/" part of the path.
@@ -11,16 +11,22 @@
  
  # NO EDITING below this line is required
  # if all you want to do is install and use the plugins.
-@@ -35,7 +35,7 @@
- # GENERAL
+@@ -37,11 +37,11 @@ INSTALL_LRDF_DIR	=	/usr/local/share/lads
+ OS := $(shell uname -s)
  
- CC	= gcc
--CFLAGS	= -I. -O3 -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC
-+CFLAGS	= -I. $(OPTFLAGS) -Wall -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -c -fPIC -DPIC
- LDFLAGS	= -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt
+ CC      = gcc
+-CFLAGS  = -I. -O3 -Wall -fomit-frame-pointer -funroll-loops -ffast-math -c -fPIC -DPIC
++CFLAGS  += -I. -Wall -fomit-frame-pointer -funroll-loops -ffast-math -c -fPIC -DPIC
+ ifeq ($(OS),Darwin)
+-LDFLAGS = -nostartfiles -shared -Wl,-install_name,symbolic -lc -lm
++LDFLAGS += -nostartfiles -shared -Wl,-install_name,symbolic -lc -lm
+ else
+-LDFLAGS = -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt
++LDFLAGS += -nostartfiles -shared -Wl,-Bsymbolic -lc -lm -lrt
+ endif
  MODULES = $(wildcard *.c)
  
-@@ -56,11 +56,11 @@
+@@ -62,11 +62,11 @@ tap_dynamics_st.o: tap_dynamics_presets.
  # OTHER TARGETS
  
  install: all
