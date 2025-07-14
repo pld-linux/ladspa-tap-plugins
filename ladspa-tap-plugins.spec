@@ -40,7 +40,7 @@ Dokumentacja wtyczek TAP.
 
 %prep
 %setup -qn %{pname}-%{version} -a1
-%patch0 -p1
+%patch -P0 -p1
 
 %{__mv} %{pname}-doc-%{docs_ver} docs
 
